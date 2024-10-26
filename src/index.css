@@ -54,14 +54,6 @@ button:hover{
   color: white !important;
 }
 
-.scrollable-element {
-  overflow: hidden;
-}
-
-.scrollable-element::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
-}
-
-.scrollable-element {
-  scrollbar-width: none;
 }
