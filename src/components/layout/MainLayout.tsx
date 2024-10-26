@@ -1,15 +1,21 @@
-import React from 'react';
-
-import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
+import MainSection from "./MainSection";
+import 'flowbite';
 
 const MainLayout = () => {
-    return ( <div className="h-screen overflow-hidden flex p-20 gap-8  justify-end">
-    <div className="w-full max-w-[1440px] h-full border border-1 rounded-xl shadow-lg bg-blue-500">
-    <Outlet />
+  return (<html data-theme="mytheme">
+
+    <div
+      className="h-screen overflow-hidden flex py-[60px] gap-8  justify-center bg-[#FBFDFF]"
+      dir="rtl"
+      >
+      <div className="w-[300px] h-full">
+        <SideBar />
+      </div>
+      <MainSection />
     </div>
-<SideBar/>
-    </div> );
-}
- 
+      </html>
+  );
+};
+
 export default MainLayout;
