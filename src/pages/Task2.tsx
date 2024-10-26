@@ -34,7 +34,7 @@ const Task = () => {
     }
   }, []);
 
-  const handleDelete = (index) => {
+  const handleDelete = (index: number) => {
     const updatedQuestions = questions.filter((_, i) => i !== index);
     setQuestions(updatedQuestions);
     localStorage.setItem("questions", JSON.stringify(updatedQuestions));
@@ -60,7 +60,7 @@ const Task = () => {
     localStorage.setItem("questions", JSON.stringify(updatedQuestions));
   };
 
-  const handleEditQuestion = (index) => {
+  const handleEditQuestion = (index: number) => {
     const updatedQuestions = [...questions];
     updatedQuestions[index] = {
       ...updatedQuestions[index],
@@ -76,12 +76,12 @@ const Task = () => {
     setNewAnswers([...newAnswers, ""]);
   };
 
-  const handleDeleteAnswer = (index) => {
+  const handleDeleteAnswer = (index: number) => {
     const updatedAnswers = newAnswers.filter((_, i) => i !== index);
     setNewAnswers(updatedAnswers);
   };
 
-  const handleAnswerChange = (index, value) => {
+  const handleAnswerChange = (index: number, value: string) => {
     const updatedAnswers = [...newAnswers];
     updatedAnswers[index] = value;
     setNewAnswers(updatedAnswers);
