@@ -10,5 +10,5 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  { rules: { 'no-console': true } }
+  { rules: { 'no-console': true, } }
 ];

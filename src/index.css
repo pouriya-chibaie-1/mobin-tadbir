@@ -1,11 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'flowbite';
 
+@font-face {
+	font-family: 'Yekan';
+	src: url( '/public/fonts/yekan/Yekan.eot' );
+	src: url( 'Yekan.eot?#iefix' ) format( 'embedded-opentype' ),
+		url( '/public/fonts/yekan/Yekan.woff2' ) format( 'woff2' ),
+		url( '/public/fonts/yekan/Yekan.woff' ) format( 'woff' ),
+		url( '/public/fonts/yekan/Yekan.ttf' ) format( 'truetype' ),
+		url( '/public/fonts/yekan/Yekan.svg#Yekan' ) format( 'svg' );
+	font-weight: normal;
+	font-style: normal;
+}
 @layer base {
+
+
   *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Yekan', sans-serif;
   }
+}
+.triangle-left {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 10px solid white;
+}
+.btn:disabled {
+  background-color: #DDDDDD;
+  color: rgba(0, 0, 0, 0.38);
+  border:none
+}
+@layer components {
+ 
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+
+[data-testid="flowbite-tooltip-arrow"]  {
+  background-color: #E0EAF5; 
+  border-top-color: #E0EAF5; 
+}
+button span {
+  color: inherit !important;
+}
+button:hover{
+  color: white !important;
+}
+
+.scrollable-element {
+  overflow: hidden;
+}
+
+.scrollable-element::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-element {
+  scrollbar-width: none;
 }
