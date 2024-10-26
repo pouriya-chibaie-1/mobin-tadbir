@@ -33,7 +33,8 @@
 }
 .btn:disabled {
   background-color: #DDDDDD;
-  color: rgba(0, 0, 0, 0.38);
+  color: rgba(0, 0, 0, 0.38) !important;
+  opacity: 1 !important;
   border:none
 }
 @layer components {

@@ -9,6 +9,7 @@ import trick from "../../../assets/icon/tick-circle.svg";
 import close from "../../../assets/icon/close.svg";
 import trash from "../../../assets/icon/trash.svg";
 import Table from "../../shared/Table";
+import CustomButton from "../../shared/Button";
 const AddUser = () => {
   const dispatch = useDispatch();
   const { errorMessages, users } = useSelector((state: any) => state.users);
@@ -45,13 +46,13 @@ const AddUser = () => {
       ></Table>
 
       <div className="w-full flex gap-5 mt-[30px]">
-        <button
-          type="button"
+        <CustomButton
           onClick={() => {
             dispatch(receivePassword());
           }}
+          extendedClass=" w-1/2 h-10"
           disabled={Object.keys(errorMessages).length === 0 ? false : true}
-          className={`btn w-1/2 text-white bg-primary-color disabled:cursor-not-allowed  ${Object.keys(errorMessages).length === 0 ? "hover:bg-blue-900 focus:ring-4" : ""} focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800`}
+          color="primaryColor"
         >
           {Object.keys(errorMessages).length === 0 ? (
             <span>
@@ -65,16 +66,17 @@ const AddUser = () => {
           ) : (
             "افزودن کاربران به سازمان"
           )}
-        </button>
-        <button
+        </CustomButton>
+        <CustomButton
           onClick={() => {
             dispatch(deleteUsersWithErrors());
           }}
-          type="button"
-          className=" w-1/2 font-bold text-error-color hover:text-white border border-error-color hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+          color="errorColor"
+          extendedClass="w-1/2 h-10"
+          outline
         >
           حذف کاربران دارای خطا
-        </button>
+        </CustomButton>
       </div>
     </>
   );

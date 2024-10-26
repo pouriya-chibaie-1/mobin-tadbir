@@ -12,7 +12,7 @@ const DownloadButton :React.FC<CustomButtonProps>= ({children,extendedClass,...p
     <CustomButton
      onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      extendedClass={extendedClass}
+      extendedClass={`btn ${extendedClass} `}
       color="secondaryColor"
       outline={true}
       {...props}
