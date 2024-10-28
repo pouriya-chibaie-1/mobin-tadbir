@@ -3,9 +3,7 @@ import rightArrow from "../assets/icon/arrow-right-black.svg";
 import plus from "../assets/icon/plus.svg";
 import edit from "../assets/icon/edit.svg";
 import forward from "../assets/icon/forward.svg";
-import closeX from "../assets/icon/close-x.svg";
 import trash from "../assets/icon/trash-question.svg";
-import { Modal } from "flowbite-react";
 import CustomButton from "../components/shared/Button";
 import DrawerModal from "../components/shared/DrawerModal";
 
