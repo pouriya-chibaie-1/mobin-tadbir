@@ -7,6 +7,7 @@ import closeX from "../assets/icon/close-x.svg";
 import trash from "../assets/icon/trash-question.svg";
 import { Modal } from "flowbite-react";
 import CustomButton from "../components/shared/Button";
+import DrawerModal from "../components/shared/DrawerModal";
 
 const Task = () => {
   const [openModal, setOpenModal] = useState({ isOpen: false, index: 0 });
@@ -58,6 +59,7 @@ const Task = () => {
     setNewQuestion("");
     setNewAnswers([""]);
     localStorage.setItem("questions", JSON.stringify(updatedQuestions));
+    setOpenModal({ isOpen: false, index: 0 });
   };
 
   const handleEditQuestion = (index: number) => {
@@ -68,8 +70,8 @@ const Task = () => {
       awnsers: newAnswers,
     };
     setQuestions(updatedQuestions);
-    setOpenModal({ isOpen: false, index: 0 });
     localStorage.setItem("questions", JSON.stringify(updatedQuestions));
+    setOpenModal({ isOpen: false, index: 0 });
   };
 
   const handleAddAnswer = () => {
@@ -93,7 +95,7 @@ const Task = () => {
         style={{ direction: "rtl" }}
         className="w-full flex justify-between mb-6"
       >
-        <div className="flex gap-2 w-fit text-lg text-[#14142A]">
+        <div className="flex gap-2 w-fit text-lg text-[#14142A] font-bold">
           <img src={rightArrow} />
           لیست الگو{" "}
         </div>
@@ -155,26 +157,11 @@ const Task = () => {
           </div>
         ))}
       </div>
-
-      <Modal
-        show={openModal.isOpen}
-        onClose={() => setOpenModal({ isOpen: false, index: 0 })}
-        dir="rtl"
-      >
-        <Modal.Body className="p-4">
-          <div className="w-full flex justify-between text-xl font-bold text-[#14142A] mb-6">
-            <span>
-              {openModal.index === -1 ? "افزودن سوال جدید" : "ویرایش نظرسنجی"}
-            </span>
-            <img
-              src={closeX}
-              alt="close"
-              onClick={() => setOpenModal({ isOpen: false, index: 0 })}
-            />
-          </div>
+      <DrawerModal width="434px" title="ويرايش نظرسنجى" isOpen={openModal.isOpen}  onClose={() => setOpenModal({ isOpen: false, index: 0 })} >
+    
           <div className="flex flex-col gap-4">
-            <div className="flex gap-1 items-center">
-              <span className="font-bold text-[#14142A]">سوال</span>
+            <div className="flex gap-1 flex-col justify-center ">
+              <span className="font-bold text-[#14142A] mb-4">سوال</span>
               <input
                 className="w-full h-12 border-[1.5px] rounded-[10px] p-2 border-[#D9DBE9]"
                 placeholder="سوال"
@@ -185,48 +172,50 @@ const Task = () => {
             <div className="mt-8">
               <div className="font-bold text-[#14142A] mb-4">پاسخ ها</div>
               {newAnswers.map((answer, i) => (
-                <div key={i} className="flex gap-2 items-center mb-2">
+                <div key={i} className="flex gap-2 items-center mb-6">
                   <input
                     className="w-full h-12 border-[1.5px] rounded-[10px] p-2 border-[#D9DBE9] "
                     placeholder={`پاسخ ${i + 1}`}
                     value={answer}
                     onChange={(e) => handleAnswerChange(i, e.target.value)}
                   />
-                  <CustomButton
+                  <button
                     onClick={() => handleDeleteAnswer(i)}
-                    color="errorColor"
-                    outline
-                    extendedClass="h-12"
+                    className="h-12"
                   >
-                    حذف{" "}
-                  </CustomButton>
+                    <img src={trash} />{" "}
+                  </button>
                 </div>
               ))}
-              <CustomButton
-                outline
+              <button
+                // outline
                 color="secondaryColor"
-                extendedClass="border-[1.5px] border-dashed text-secondary-color border-secondary-color w-full h-12 rounded-[10px] flex-center gap-2 mt-4"
+                className="border-[1.5px] border-none text-secondary-color hover:text-secondary-color   w-full h-12 rounded-[10px] flex-center gap-2 mt-4 border-dashed-image"
                 onClick={handleAddAnswer}
               >
-                <img src={plus} alt="add" className="w-6 h-6 ml-2" />
+                <img src={plus} alt="add" className="w-4 h-4 my-auto ml-2" />
                 افزودن پاسخ جدید
-              </CustomButton>
+              </button>
+              <div className="border-dashed w-full h-10"></div>
             </div>
             <div className="flex gap-4 mt-4">
-              <CustomButton
-                extendedClass="w-1/4"
-                onClick={() => {setOpenModal({ isOpen: false, index: 0 });setNewAnswers([]);setNewQuestion("")}}
-                outline
-                color="errorColor"
+              <button
+                className="w-1/4 hover:bg-primary-color hover:text-white rounded-lg"
+                onClick={() => {
+                  setOpenModal({ isOpen: false, index: 0 });
+                  setNewAnswers([]);
+                  setNewQuestion("");
+                }}
               >
                 انصراف
-              </CustomButton>
+              </button>
               <CustomButton
                 extendedClass="w-3/4"
-                color="primaryColor"
+                color="secondaryColor"
                 disabled={
                   newAnswers.length === 0 ||
-                  newAnswers.some((answer) => answer.trim() === "")
+                  newAnswers.some((answer) => answer.trim() === "")||
+                  newQuestion.trim() === ""
                 }
                 onClick={() =>
                   openModal.index === -1
@@ -238,8 +227,7 @@ const Task = () => {
               </CustomButton>
             </div>
           </div>
-        </Modal.Body>
-      </Modal>
+      </DrawerModal>
     </>
   );
 };
